@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/servis-takip-sistemi/static/css/main.28bac1de.chunk.css",
-    "main.js": "/servis-takip-sistemi/static/js/main.ced273e8.chunk.js",
-    "main.js.map": "/servis-takip-sistemi/static/js/main.ced273e8.chunk.js.map",
+    "main.js": "/servis-takip-sistemi/static/js/main.44f815d8.chunk.js",
+    "main.js.map": "/servis-takip-sistemi/static/js/main.44f815d8.chunk.js.map",
     "runtime-main.js": "/servis-takip-sistemi/static/js/runtime-main.82f6d52d.js",
     "runtime-main.js.map": "/servis-takip-sistemi/static/js/runtime-main.82f6d52d.js.map",
-    "static/js/2.3513aa76.chunk.js": "/servis-takip-sistemi/static/js/2.3513aa76.chunk.js",
-    "static/js/2.3513aa76.chunk.js.map": "/servis-takip-sistemi/static/js/2.3513aa76.chunk.js.map",
+    "static/js/2.32d990a7.chunk.js": "/servis-takip-sistemi/static/js/2.32d990a7.chunk.js",
+    "static/js/2.32d990a7.chunk.js.map": "/servis-takip-sistemi/static/js/2.32d990a7.chunk.js.map",
     "index.html": "/servis-takip-sistemi/index.html",
-    "precache-manifest.7bdf5a6f6eed4efd058dec5c697e14ce.js": "/servis-takip-sistemi/precache-manifest.7bdf5a6f6eed4efd058dec5c697e14ce.js",
+    "precache-manifest.0cf8fe09ae072ec20ddc27000f7ccf48.js": "/servis-takip-sistemi/precache-manifest.0cf8fe09ae072ec20ddc27000f7ccf48.js",
     "service-worker.js": "/servis-takip-sistemi/service-worker.js",
     "static/css/main.28bac1de.chunk.css.map": "/servis-takip-sistemi/static/css/main.28bac1de.chunk.css.map",
-    "static/js/2.3513aa76.chunk.js.LICENSE.txt": "/servis-takip-sistemi/static/js/2.3513aa76.chunk.js.LICENSE.txt"
+    "static/js/2.32d990a7.chunk.js.LICENSE.txt": "/servis-takip-sistemi/static/js/2.32d990a7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.82f6d52d.js",
-    "static/js/2.3513aa76.chunk.js",
+    "static/js/2.32d990a7.chunk.js",
     "static/css/main.28bac1de.chunk.css",
-    "static/js/main.ced273e8.chunk.js"
+    "static/js/main.44f815d8.chunk.js"
   ]
 }
