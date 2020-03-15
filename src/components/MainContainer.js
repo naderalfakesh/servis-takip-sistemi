@@ -12,7 +12,7 @@ export default class MainContainer extends Component {
 
   servisFetcher = () => {
     this.setState({isLoading: true});
-    db.collection("services").orderBy('deliveryDate','desc')
+    db.collection("services").orderBy('createdAt','desc')
       .onSnapshot(snap => {
         const servisListesi = snap.docs.map(e => {
           const data = e.data();
@@ -46,13 +46,14 @@ export default class MainContainer extends Component {
   }
 
   handleAdd = (data)=>{
-    try{
-      //if the date was already firebase timestamp no need to apply 
+    data.createdAt = firebase.firestore.Timestamp.now()
+    try{//if the date was already firebase timestamp no need to apply
       data.deliveryDate = firebase.firestore.Timestamp.fromDate(data.deliveryDate);
+    }catch(e){;}
+    try{//if the date was already firebase timestamp no need to apply
       data.dispatchDate = firebase.firestore.Timestamp.fromDate(data.dispatchDate);
-    }
-    catch(e){;}
-
+    }catch(e){;}
+    
     this.setState({isLoading: true});
     db.collection("services")
     .add(data)
@@ -67,12 +68,12 @@ export default class MainContainer extends Component {
     }
 
   handleEdit = (data)=>{
-    try{
-      //if the date was already firebase timestamp no need to apply 
+    try{//if the date was already firebase timestamp no need to apply
       data.deliveryDate = firebase.firestore.Timestamp.fromDate(data.deliveryDate);
+    }catch(e){;}
+    try{//if the date was already firebase timestamp no need to apply
       data.dispatchDate = firebase.firestore.Timestamp.fromDate(data.dispatchDate);
-    }
-    catch(e){return}
+    }catch(e){;}
 
     this.setState({isLoading: true});
     const newData = {...data}
