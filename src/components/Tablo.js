@@ -2,75 +2,63 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import tableIcons from '../Assets/Icons';
 
-  
-
-export default function MaterialTableDemo() {
-  const [state, setState] = React.useState({
-    columns: [ 
-      { title: 'Name', field: 'name' },
-      { title: 'Surname', field: 'surname' },
-      { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-      {
-        title: 'Birth Place',
-        field: 'birthCity',
-        lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-      },
-    ],
-    data: [
-      { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      {
-        name: 'Zerya Betül',
-        surname: 'Baran',
-        birthYear: 2017,
-        birthCity: 34,
-      },
-    ],
-  });
-
+export default function MaterialTableDemo(props) {
   return (
     <MaterialTable
-      title="Editable Example"
+      title="Servis Takip Listesi"
       icons={tableIcons}
-      columns={state.columns}
-      data={state.data}
+      columns={props.columns}
+      data={props.data}
       style={{minHeight:"100vh"}}
-      editable={{
-        onRowAdd: newData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              setState(prevState => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 0);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                setState(prevState => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: oldData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              setState(prevState => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
+      isLoading={props.isLoading}
+      options={{
+        exportButton: false,
+        filtering: false,
+        addRowPosition: "first",
+        paginationType: "stepped",
+        pageSize: 10
+        // minBodyHeight: "100vh"
       }}
+      editable={{
+        onRowAdd: newData =>{ 
+          props.handleAdd(newData)
+          return new Promise(resolve => {resolve();})
+        },
+        onRowUpdate: (newData, oldData) =>{ 
+          props.handleEdit(newData)
+          return new Promise(resolve => {resolve();})
+        },
+        onRowDelete: oldData =>{ 
+          props.handleDelete(oldData)
+          return new Promise(resolve => {resolve();})
+        }
+      }}
+      localization={{
+        toolbar: {
+            nRowsSelected: '{0} SATIR SEÇİLDİ'
+        },
+        header: {
+            actions: 'AKSİYON'
+        },
+        body: {
+            emptyDataSourceMessage: 'GÖSTERİLECEK SATIR YOK',
+            addTooltip : 'Ekle',
+            deleteTooltip: 'Sil',
+            editTooltip: 'Değiştir',
+            filterRow: {
+                filterTooltip: 'SÜZGEÇ'
+            },
+            editRow:{
+              deleteText: 'Bunu silmek istediğinizden emin misiniz?',
+              cancelTooltip: 'İptal',
+              saveTooltip: 'Kaydet',
+            },
+            toolbar:{
+              searchTooltip: 'Ara',
+              searchPlaceholder: 'Ara',
+            }
+        }
+    }}
     />
   );
 }
