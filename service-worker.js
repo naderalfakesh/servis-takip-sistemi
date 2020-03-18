@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/servis-takip-sistemi/precache-manifest.0cf8fe09ae072ec20ddc27000f7ccf48.js"
+  "/servis-takip-sistemi/precache-manifest.6854516efab4e1fa7cd029a7fb353fc4.js"
 );
 
 self.addEventListener('message', (event) => {
