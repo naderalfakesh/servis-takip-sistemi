@@ -27,16 +27,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Sidebar() {
+export default function Sidebar(props) {
     const classes = useStyles();
     return (
         <Drawer
           className={classes.drawer}
-          variant="permanent"
+          variant="persistent"
           classes={{
             paper: classes.drawerPaper
           }}
           anchor="left"
+          open={props.sideBarToggle}
         >
           <Divider />
           <List>
