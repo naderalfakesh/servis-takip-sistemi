@@ -23,8 +23,10 @@ export default class MainHeader extends Component {
             <Typography variant="h6" style={{flexGrow: 1}}>
               DalElektrik
             </Typography>
-            <Button color="inherit">Aböne</Button>
-            <Button color="inherit">Giriş yap</Button>
+            {this.props.auth &&  <Typography> {this.props.user.name} </Typography>}
+            {this.props.auth &&  <Button color="inherit" onClick={this.props.handleSignOut} >Çıkış </Button>}
+            {!this.props.auth && <Button color="inherit">Aböne </Button>}
+            {!this.props.auth && <Button color="inherit">Giriş </Button>}
           </Toolbar>
         </AppBar>
       </div>
