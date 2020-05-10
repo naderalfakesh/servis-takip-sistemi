@@ -6,10 +6,10 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-export default class MainHeader extends Component {
+export default class Header extends Component {
   render() {
     return (
-      <div>
+      <>
         <AppBar position="fixed" style={{zIndex: 1300}}>
           <Toolbar>
             <IconButton
@@ -29,7 +29,9 @@ export default class MainHeader extends Component {
             {!this.props.auth && <Button color="inherit">Giriş </Button>}
           </Toolbar>
         </AppBar>
-      </div>
+        <Toolbar/>
+
+      </>
     );
   }
 }

@@ -1,23 +1,34 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import tableIcons from '../Assets/Icons';
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles({
+  Tablo: {
+    overflow: "hidden",
+  },
+});
 
 export default function MaterialTableDemo(props) {
+  const classes = useStyles();
+
   return (
+    <div className={classes.Tablo} >
     <MaterialTable
       title="Servis Takip Listesi"
       icons={tableIcons}
       columns={props.columns}
       data={props.data}
-      style={{minHeight:"100vh"}}
       isLoading={props.isLoading}
       options={{
         exportButton: false,
         filtering: false,
         addRowPosition: "first",
         paginationType: "stepped",
-        pageSize: 10
-        // minBodyHeight: "100vh"
+        pageSize: 20,
+        maxBodyHeight: "72vh",
+        minBodyHeight: "72vh",
+        headerStyle: {whiteSpace: "nowrap"},
+        rowStyle: {whiteSpace: "nowrap"}
       }}
       editable={{
         onRowAdd: newData =>{ 
@@ -33,6 +44,21 @@ export default function MaterialTableDemo(props) {
           return new Promise(resolve => {resolve();})
         }
       }}
+      detailPanel={rowData => {
+        return (
+          <div
+                style={{
+                  fontSize: 100,
+                  textAlign: 'center',
+                  color: 'white',
+                  backgroundColor: '#FDD835',
+                }}
+              >
+                {rowData.product}
+              </div>
+        )
+      }}
+      onRowClick={(event, rowData, togglePanel) => togglePanel()}
       localization={{
         toolbar: {
             nRowsSelected: '{0} SATIR SEÇİLDİ'
@@ -60,5 +86,6 @@ export default function MaterialTableDemo(props) {
         }
     }}
     />
+    </div>
   );
 }
