@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a0d4ed986ef470dc3275227dca9dafd1",
+    "revision": "e57af78e704b846e52d8f4e746f75f96",
     "url": "/servis-takip-sistemi/index.html"
   },
   {
-    "revision": "9acd1a0958a27102a032",
+    "revision": "5f83144812625cb41525",
     "url": "/servis-takip-sistemi/static/css/main.5ecd60fb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/servis-takip-sistemi/static/js/2.5d4a9363.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9acd1a0958a27102a032",
-    "url": "/servis-takip-sistemi/static/js/main.f3000e41.chunk.js"
+    "revision": "5f83144812625cb41525",
+    "url": "/servis-takip-sistemi/static/js/main.3a231b1b.chunk.js"
   },
   {
     "revision": "cc115c3927ecc02beee7",

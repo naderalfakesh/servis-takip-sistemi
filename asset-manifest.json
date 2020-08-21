@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/servis-takip-sistemi/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/servis-takip-sistemi/static/js/main.f3000e41.chunk.js",
-    "main.js.map": "/servis-takip-sistemi/static/js/main.f3000e41.chunk.js.map",
+    "main.js": "/servis-takip-sistemi/static/js/main.3a231b1b.chunk.js",
+    "main.js.map": "/servis-takip-sistemi/static/js/main.3a231b1b.chunk.js.map",
     "runtime-main.js": "/servis-takip-sistemi/static/js/runtime-main.82f6d52d.js",
     "runtime-main.js.map": "/servis-takip-sistemi/static/js/runtime-main.82f6d52d.js.map",
     "static/js/2.5d4a9363.chunk.js": "/servis-takip-sistemi/static/js/2.5d4a9363.chunk.js",
     "static/js/2.5d4a9363.chunk.js.map": "/servis-takip-sistemi/static/js/2.5d4a9363.chunk.js.map",
     "index.html": "/servis-takip-sistemi/index.html",
-    "precache-manifest.48a853ff9e03bda5f377412e17868a94.js": "/servis-takip-sistemi/precache-manifest.48a853ff9e03bda5f377412e17868a94.js",
+    "precache-manifest.67f149d93c8e53a57e3977a33ba88a63.js": "/servis-takip-sistemi/precache-manifest.67f149d93c8e53a57e3977a33ba88a63.js",
     "service-worker.js": "/servis-takip-sistemi/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/servis-takip-sistemi/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.5d4a9363.chunk.js.LICENSE.txt": "/servis-takip-sistemi/static/js/2.5d4a9363.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.82f6d52d.js",
     "static/js/2.5d4a9363.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.f3000e41.chunk.js"
+    "static/js/main.3a231b1b.chunk.js"
   ]
 }
