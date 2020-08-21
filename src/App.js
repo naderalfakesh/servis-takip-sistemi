@@ -25,7 +25,7 @@ function App() {
       }
     })
     
-  }, [])
+  }, [authorized])
 
   const handleLogin =(e)=>{
     e.preventDefault();
