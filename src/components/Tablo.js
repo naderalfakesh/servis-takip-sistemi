@@ -1,91 +1,50 @@
-import React from 'react';
-import MaterialTable from 'material-table';
-import tableIcons from '../Assets/Icons';
-import { makeStyles } from '@material-ui/core/styles';
-const useStyles = makeStyles({
-  Tablo: {
-    overflow: "hidden",
-  },
-});
+import React, {useState} from "react";
+import {AgGridColumn, AgGridReact} from "ag-grid-react";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
-export default function MaterialTableDemo(props) {
-  const classes = useStyles();
+export default function MaterialTableDemo({
+                                              columns,
+                                              data,
+                                              isLoading,
+                                              handleAdd,
+                                              handleEdit,
+                                              handleDelete,
+                                          }) {
+    const [gridApi, setGridApi] = useState(null);
+    const onButtonClick = e => {
+        const selectedNodes = gridApi.getSelectedNodes()
+        const selectedData = selectedNodes.map(node => node.data)
+        console.log(selectedData)
+    }
 
-  return (
-    <div className={classes.Tablo} >
-    <MaterialTable
-      title="Servis Takip Listesi"
-      icons={tableIcons}
-      columns={props.columns}
-      data={props.data}
-      isLoading={props.isLoading}
-      options={{
-        exportButton: false,
-        filtering: false,
-        addRowPosition: "first",
-        paginationType: "stepped",
-        pageSize: 20,
-        maxBodyHeight: "72vh",
-        minBodyHeight: "72vh",
-        headerStyle: {whiteSpace: "nowrap"},
-        rowStyle: {whiteSpace: "nowrap"}
-      }}
-      editable={{
-        onRowAdd: newData =>{ 
-          props.handleAdd(newData)
-          return new Promise(resolve => {resolve();})
-        },
-        onRowUpdate: (newData, oldData) =>{ 
-          props.handleEdit(newData)
-          return new Promise(resolve => {resolve();})
-        },
-        onRowDelete: oldData =>{ 
-          props.handleDelete(oldData)
-          return new Promise(resolve => {resolve();})
-        }
-      }}
-      detailPanel={rowData => {
-        return (
-          <div
-                style={{
-                  fontSize: 100,
-                  textAlign: 'center',
-                  color: 'white',
-                  backgroundColor: '#FDD835',
+    function onGridReady(params) {
+        setGridApi(params.api);
+    }
+
+    return (
+        <div className="ag-theme-alpine" style={{height: "100%", width: "100%"}}>
+            <button onClick={onButtonClick}>Get selected rows</button>
+            <AgGridReact
+                onGridReady={onGridReady}
+                rowData={data}
+                rowSelection="multiple"
+                animateRows
+                defaultColDef={{
+                    sortable: true,
+                    filter: true,
+                    editable: true,
+                    headerCheckboxSelectionFilteredOnly: true,
                 }}
-              >
-                {rowData.product}
-              </div>
-        )
-      }}
-      onRowClick={(event, rowData, togglePanel) => togglePanel()}
-      localization={{
-        toolbar: {
-            nRowsSelected: '{0} SATIR SEÇİLDİ'
-        },
-        header: {
-            actions: 'AKSİYON'
-        },
-        body: {
-            emptyDataSourceMessage: 'GÖSTERİLECEK SATIR YOK',
-            addTooltip : 'Ekle',
-            deleteTooltip: 'Sil',
-            editTooltip: 'Değiştir',
-            filterRow: {
-                filterTooltip: 'SÜZGEÇ'
-            },
-            editRow:{
-              deleteText: 'Bunu silmek istediğinizden emin misiniz?',
-              cancelTooltip: 'İptal',
-              saveTooltip: 'Kaydet',
-            },
-            toolbar:{
-              searchTooltip: 'Ara',
-              searchPlaceholder: 'Ara',
-            }
-        }
-    }}
-    />
-    </div>
-  );
+            >
+                {columns.map((col, i) => (
+                    <AgGridColumn field={col.field} headerName={col.title} key={i} checkboxSelection={i === 0} pinned
+                                  resizable/>
+                ))}
+
+
+            </AgGridReact>
+
+        </div>
+    );
 }
