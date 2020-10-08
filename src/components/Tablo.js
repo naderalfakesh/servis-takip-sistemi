@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {AgGridColumn, AgGridReact} from "ag-grid-react";
+import React, { useState } from "react";
+import { AgGridColumn, AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import "./tablo.css";
@@ -10,12 +10,12 @@ export default function MaterialTableDemo({
   isLoading,
   handleAdd,
   handleEdit,
-  handleDelete
+  handleDelete,
 }) {
   const [gridApi, setGridApi] = useState(null);
   const onButtonClick = (e, type) => {
     const selectedNodes = gridApi.getSelectedNodes();
-    const selectedData = selectedNodes.map(node => node.data);
+    const selectedData = selectedNodes.map((node) => node.data);
     console.log(type, selectedData);
   };
 
@@ -28,15 +28,15 @@ export default function MaterialTableDemo({
       className="ag-theme-alpine"
       style={{
         height: "100%",
-        width: "100%"
+        width: "100%",
       }}
     >
       <AgGridReact
-        rowData={[...Array(50).fill(data[0]), ...Array(50).fill(data[1])]}
+        rowData={data}
         onGridReady={onGridReady}
-        onCellValueChanged={e => onButtonClick(e, "cell")}
-        onRowValueChanged={e => onButtonClick(e, "row")}
-        onBtCopyRows={e => onButtonClick(e, "copy")}
+        onCellValueChanged={(e) => onButtonClick(e, "cell")}
+        onRowValueChanged={(e) => onButtonClick(e, "row")}
+        onBtCopyRows={(e) => onButtonClick(e, "copy")}
         rowSelection="multiple"
         animateRows
         editType={"fullRow"}
@@ -45,7 +45,7 @@ export default function MaterialTableDemo({
           sortable: true,
           filter: true,
           editable: false,
-          headerCheckboxSelectionFilteredOnly: true
+          headerCheckboxSelectionFilteredOnly: true,
         }}
       >
         {columns.map((col, i) => (

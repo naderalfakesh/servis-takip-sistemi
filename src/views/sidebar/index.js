@@ -37,7 +37,7 @@ export default function Sidebar({ sideBarToggle }) {
       <Divider />
       <List>
         {pages.map((page, index) => (
-          <ListItem button key={index} component={Link} to="/">
+          <ListItem button key={index} component={Link} to={page.link}>
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon>
