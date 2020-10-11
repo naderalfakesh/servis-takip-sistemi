@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Sidebar from "./views/sidebar";
-import MainContainer from "./views/main";
 import Header from "./views/header";
 import Login from "./components/Login";
 import { auth } from "./firebase/firebaseConfig";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
+import MainContainer from "./views/main";
+import SalesPage from "./views/salesPage";
 
 const useStyles = makeStyles({
   App: {
@@ -79,23 +80,12 @@ function App() {
           <CircularProgress />
         ) : (
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={() =>
-                authorized ? <MainContainer /> : <Redirect to="/login" />
-              }
-            />
+            <Route exact path="/" render={() => (authorized ? <MainContainer /> : <Redirect to="/login" />)} />
+            <Route exact path="/sales" render={() => (authorized ? <SalesPage /> : <Redirect to="/login" />)} />
             <Route
               exact
               path="/login"
-              render={() =>
-                authorized ? (
-                  <Redirect to="/" />
-                ) : (
-                  <Login handleLogin={handleLogin} />
-                )
-              }
+              render={() => (authorized ? <Redirect to="/" /> : <Login handleLogin={handleLogin} />)}
             />
           </Switch>
         )}

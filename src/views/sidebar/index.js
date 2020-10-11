@@ -15,7 +15,7 @@ const drawerWidth = "100%";
 export default function Sidebar({ sideBarToggle }) {
   const useStyles = makeStyles((theme) => ({
     drawer: {
-      width: sideBarToggle ? "200px" : "0",
+      width: sideBarToggle ? "300px" : "0",
       height: "100%",
     },
     drawerPaper: {
@@ -38,9 +38,7 @@ export default function Sidebar({ sideBarToggle }) {
       <List>
         {pages.map((page, index) => (
           <ListItem button key={index} component={Link} to={page.link}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={page.lable} />
           </ListItem>
         ))}
