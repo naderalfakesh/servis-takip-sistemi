@@ -9,12 +9,13 @@ export default function MainContainer() {
   const [servisListesi, setServisListesi] = useState([]);
 
   useEffect(() => {
-    servisFetcher();
+    const dbSubscription = servisFetcher();
+    return () => dbSubscription();
   });
-
   const servisFetcher = () => {
     setIsLoading(true);
-    db.collection("services")
+    return db
+      .collection("services")
       .orderBy("createdAt", "desc")
       .onSnapshot((snap) => {
         const servisList = snap.docs.map((e) => {

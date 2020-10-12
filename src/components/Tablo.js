@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
@@ -8,6 +8,7 @@ export default function MaterialTableDemo({
   columns,
   data,
   isLoading,
+  handleSelect,
   handleAdd,
   handleEdit,
   handleDelete,
@@ -17,6 +18,11 @@ export default function MaterialTableDemo({
     const selectedNodes = gridApi.getSelectedNodes();
     const selectedData = selectedNodes.map((node) => node.data);
     console.log(type, selectedData);
+  };
+  const handleRowSelect = (e) => {
+    const selectedNodes = gridApi.getSelectedNodes();
+    const selectedData = selectedNodes.map((node) => node.data);
+    handleSelect(selectedData);
   };
 
   function onGridReady(params) {
@@ -38,8 +44,11 @@ export default function MaterialTableDemo({
         onRowValueChanged={(e) => onButtonClick(e, "row")}
         onBtCopyRows={(e) => onButtonClick(e, "copy")}
         rowSelection="multiple"
+        onRowSelected={handleRowSelect}
+        isLoading={true}
         animateRows
         editType={"fullRow"}
+        showLoadingOverlay={isLoading}
         suppressHorizontalScroll="true"
         defaultColDef={{
           sortable: true,
@@ -49,13 +58,7 @@ export default function MaterialTableDemo({
         }}
       >
         {columns.map((col, i) => (
-          <AgGridColumn
-            field={col.field}
-            headerName={col.title}
-            key={i}
-            checkboxSelection={i === 0}
-            resizable
-          />
+          <AgGridColumn field={col.field} headerName={col.title} key={i} checkboxSelection={i === 0} resizable />
         ))}
       </AgGridReact>
     </div>

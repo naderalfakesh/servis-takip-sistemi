@@ -10,22 +10,15 @@ export default class Header extends Component {
   render() {
     return (
       <>
-        <AppBar position="fixed" style={{ zIndex: 1300 }} elevation="0">
+        <AppBar position="fixed" style={{ zIndex: 1300 }} elevation={0}>
           <Toolbar>
-            <IconButton
-              edge="start"
-              onClick={this.props.handleToggle}
-              color="inherit"
-              aria-label="menu"
-            >
+            <IconButton edge="start" onClick={this.props.handleToggle} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" style={{ flexGrow: 1 }}>
               DalElektrik
             </Typography>
-            {this.props.auth && (
-              <Typography> {this.props.user.name} </Typography>
-            )}
+            {this.props.auth && <Typography> {this.props.user.name} </Typography>}
             {this.props.auth && (
               <Button color="inherit" onClick={this.props.handleSignOut}>
                 Çıkış{" "}
