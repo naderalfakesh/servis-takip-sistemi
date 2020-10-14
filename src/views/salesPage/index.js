@@ -3,7 +3,6 @@ import Tablo from "../../components/Tablo";
 import { db } from "../../firebase/firebaseConfig";
 import columns from "./columns";
 import firebase from "firebase/app";
-import Button from "@material-ui/core/Button";
 
 export default function SalesPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -70,51 +69,66 @@ export default function SalesPage() {
   };
 
   const handleEdit = (data) => {
-    try {
-      //if the date was already firebase timestamp no need to apply
-      data.deliveryDate = firebase.firestore.Timestamp.fromDate(data.deliveryDate);
-    } catch (e) {}
-    try {
-      //if the date was already firebase timestamp no need to apply
-      data.dispatchDate = firebase.firestore.Timestamp.fromDate(data.dispatchDate);
-    } catch (e) {}
+    console.log("edit");
+    return;
+    // try {
+    //   //if the date was already firebase timestamp no need to apply
+    //   data.deliveryDate = firebase.firestore.Timestamp.fromDate(data.deliveryDate);
+    // } catch (e) {}
+    // try {
+    //   //if the date was already firebase timestamp no need to apply
+    //   data.dispatchDate = firebase.firestore.Timestamp.fromDate(data.dispatchDate);
+    // } catch (e) {}
 
-    setIsLoading(true);
-    const newData = { ...data };
-    delete newData.id;
-    db.collection("saleServices")
-      .doc(data.id)
-      .update(newData)
-      .then(() => setIsLoading(false));
+    // setIsLoading(true);
+    // const newData = { ...data };
+    // delete newData.id;
+    // db.collection("saleServices")
+    //   .doc(data.id)
+    //   .update(newData)
+    //   .then(() => setIsLoading(false));
   };
 
   const handleDelete = () => {
-    console.log(selectedRows);
-    selectedRows.forEach((row) => {
-      setIsLoading(true);
+    const selectedIds = selectedRows.map((row) => row.id);
+    if (selectedIds && selectedIds.length > 1) {
       db.collection("saleServices")
-        .doc(row.id)
-        .delete()
-        .then(() => {
-          setIsLoading(false);
-          console.log("Succsess: ");
+        .where(firebase.firestore.FieldPath.documentId(), "in", selectedIds)
+        .get()
+        .then(function (querySnapshot) {
+          // Once we get the results, begin a batch
+          let batch = db.batch();
+
+          querySnapshot.forEach(function (doc) {
+            // For each doc, add a delete operation to the batch
+            batch.delete(doc.ref);
+          });
+
+          // Commit the batch
+          return batch.commit();
         })
-        .catch(function (error) {
-          console.error("Error removing document: ", error);
+        .then(function () {
+          console.log("deletion finished");
         });
-    });
+    } else {
+      selectedRows.forEach((row) => {
+        setIsLoading(true);
+        db.collection("saleServices")
+          .doc(row.id)
+          .delete()
+          .then(() => {
+            setIsLoading(false);
+            console.log("Succsess: ");
+          })
+          .catch(function (error) {
+            console.error("Error removing document: ", error);
+          });
+      });
+    }
   };
 
   return (
     <div style={{ width: "100%" }}>
-      <div>
-        <Button variant="contained" color="primary" onClick={() => handleAdd(null)}>
-          Add
-        </Button>
-        <Button variant="contained" color="primary" onClick={() => handleDelete()}>
-          Delete
-        </Button>
-      </div>
       <Tablo
         data={servisListesi}
         columns={columns}

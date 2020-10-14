@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AgGridColumn, AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import "./tablo.css";
+import Button from "@material-ui/core/Button";
 
 export default function MaterialTableDemo({
   columns,
@@ -37,6 +38,17 @@ export default function MaterialTableDemo({
         width: "100%",
       }}
     >
+      <div>
+        <Button size="small" variant="contained" color="primary" onClick={handleAdd}>
+          Add
+        </Button>
+        <Button size="small" variant="contained" color="primary" onClick={handleEdit}>
+          Edit
+        </Button>
+        <Button size="small" variant="contained" color="secondary" onClick={handleDelete}>
+          Delete
+        </Button>
+      </div>
       <AgGridReact
         rowData={data}
         onGridReady={onGridReady}
